@@ -1,5 +1,5 @@
 import hypermedia.video.*;
-
+import java.awt.Rectangle;
 
 OpenCV opencv;
 
