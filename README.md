@@ -1,13 +1,4 @@
 obFACEscate
 ===========
-
-This project was created for the LinkedIn Hackday 2013.
-
-This will detect faces in images and then hide the faces from recognition software. The goal is to keep as much quality in the image as possible while protecting it from facial recognition software.
-
-
-Obfuscating Techniques
-======================
-1. Checkers
-2. Yolo
+Our goal was to create a program that can edit photos to make the faces in them undetectable to face detection software without significantly compromising the image. Our program interfaces with OpenCV, a computer vision library, to target specific locations for edits, and then uses a search algorithm to choose how best to modify the photo.
 
