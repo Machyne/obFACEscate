@@ -1,7 +1,7 @@
-PImage img = loadImage("/home/matt/sketches/obfacescate/data/test1.jpg");
+PImage img = loadImage("/home/matt/CS/Hack/obFACEscate/ob/data/test1.jpg");
 
 void setup(){
-  img = checkers(img, 120, 90, 60, 120, 120, 3000, 1800);
+  img = horizBlinds(img, 120, 90, 60, 120, 120, 3000, 1800);
   size(500, 500);
 }
 
@@ -28,6 +28,29 @@ PImage checkers(PImage image, int barWidth, int barHeight, int weight, int dx, i
     }
     PImage mix = image.get();
     mix.blend(chkrs, 0, 0, mix.width, mix.height, dx, dy, dw, dh, OVERLAY);
+    return mix;
+}
+
+PImage horizBlinds(PImage image, int barWidth, int barHeight, int weight){
+    return horizBlinds(image, barWidth, barHeight, weight, 0, 0, image.width, image.height); 
+}
+
+PImage horizBlinds(PImage image, int barWidth, int barHeight, int weight, int dx, int dy, int dw, int dh){
+    PImage blnds = new PImage(dw, dh);
+    for(int x = 0; x < dw; x++){
+        for(int y = 0; y < dh; y++){
+            int place = (int)(((float)x / barWidth) - ((float)y / barHeight));
+            if(((float)y / barHeight) < ((float)x / barWidth)){ place--;}
+            place %= 2;
+            if(place == 0){
+                blnds.set(x, y, color(0, 0, 0, weight));
+            }else{
+                blnds.set(x, y, color(255, 255, 255, weight));
+            }
+        }
+    }
+    PImage mix = image.get();
+    mix.blend(blnds, 0, 0, mix.width, mix.height, dx, dy, dw, dh, OVERLAY);
     return mix;
 }
 

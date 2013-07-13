@@ -28,7 +28,9 @@ PImage horizBlinds(PImage image, int barWidth, int barHeight, int weight, int dx
     PImage blnds = new PImage(dw, dh);
     for(int x = 0; x < dw; x++){
         for(int y = 0; y < dh; y++){
-            int place = ((x / barWidth) - (y / barHeight)) % 2;
+            int place = (int)(((float)x / barWidth) - ((float)y / barHeight));
+            if(((float)y / barHeight) < ((float)x / barWidth)){ place--;}
+            place %= 2;
             if(place == 0){
                 blnds.set(x, y, color(0, 0, 0, weight));
             }else{
@@ -40,3 +42,5 @@ PImage horizBlinds(PImage image, int barWidth, int barHeight, int weight, int dx
     mix.blend(blnds, 0, 0, mix.width, mix.height, dx, dy, dw, dh, OVERLAY);
     return mix;
 }
+
+
